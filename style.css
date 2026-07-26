@@ -1,0 +1,280 @@
+:root {
+  color-scheme: light dark;
+
+  --bg: #f4f5f7;
+  --panel: #ffffff;
+  --text: #1c1f24;
+  --text-muted: #6b7280;
+  --border: #e3e5ea;
+  --accent: #2f6df6;
+  --accent-text: #ffffff;
+  --danger: #d64545;
+  --hover: #f0f2f6;
+  --shadow: 0 1px 2px rgba(16, 24, 40, .06), 0 8px 24px rgba(16, 24, 40, .08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14161a;
+    --panel: #1e2126;
+    --text: #e8eaed;
+    --text-muted: #9aa2ad;
+    --border: #2e333a;
+    --accent: #5b8cff;
+    --accent-text: #0f1114;
+    --danger: #f27171;
+    --hover: #262a31;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .35);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 2.5rem 1rem 4rem;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, "Segoe UI", "Yu Gothic UI", "Hiragino Sans",
+    "Noto Sans JP", Meiryo, sans-serif;
+  line-height: 1.6;
+}
+
+.app {
+  max-width: 34rem;
+  margin: 0 auto;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+}
+
+/* ---------- header ---------- */
+
+.app-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.5rem;
+  letter-spacing: .04em;
+}
+
+.summary {
+  margin: 0;
+  font-size: .85rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- input ---------- */
+
+.new-form {
+  display: flex;
+  gap: .5rem;
+}
+
+.new-input,
+.edit-input {
+  flex: 1;
+  min-width: 0;
+  padding: .6rem .75rem;
+  font: inherit;
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.new-input:focus-visible,
+.edit-input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: var(--accent);
+}
+
+/* ---------- buttons ---------- */
+
+.btn {
+  padding: .6rem 1rem;
+  font: inherit;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-text);
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.08);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted);
+  border-color: var(--border);
+  font-size: .85rem;
+  padding: .35rem .7rem;
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background: var(--hover);
+  color: var(--text);
+}
+
+.btn:disabled {
+  opacity: .45;
+  cursor: default;
+}
+
+/* ---------- toolbar ---------- */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  margin: 1.25rem 0 .5rem;
+  flex-wrap: wrap;
+}
+
+.filters {
+  display: flex;
+  gap: .25rem;
+  background: var(--hover);
+  border-radius: 8px;
+  padding: .2rem;
+}
+
+.filter {
+  padding: .3rem .75rem;
+  font: inherit;
+  font-size: .85rem;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.filter:hover {
+  color: var(--text);
+}
+
+.filter.is-active {
+  background: var(--panel);
+  color: var(--text);
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, .12);
+}
+
+/* ---------- list ---------- */
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--border);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  padding: .6rem .25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.item:hover {
+  background: var(--hover);
+}
+
+.item[draggable="true"] {
+  cursor: grab;
+}
+
+.item.is-dragging {
+  opacity: .4;
+}
+
+.check {
+  flex: none;
+  width: 1.15rem;
+  height: 1.15rem;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.text {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  cursor: text;
+}
+
+.item.is-done .text {
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+
+.icon-btn {
+  flex: none;
+  padding: .2rem .5rem;
+  font: inherit;
+  font-size: .8rem;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  /* 常に見えるが控えめ。行にマウスを乗せるとはっきりする。 */
+  opacity: .5;
+  transition: opacity .12s ease;
+}
+
+.item:hover .icon-btn,
+.icon-btn:focus-visible {
+  opacity: 1;
+}
+
+.icon-btn:hover {
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.icon-btn-danger:hover {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+/* ---------- misc ---------- */
+
+.empty {
+  margin: 1.5rem 0 .5rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: .9rem;
+}
+
+.app-footer {
+  margin: 1.5rem 0 0;
+  color: var(--text-muted);
+  font-size: .75rem;
+}
+
+.app-footer p {
+  margin: .2rem 0;
+}

@@ -2,6 +2,8 @@
 
 React + TypeScript + Vite で作った TODO アプリ。データはブラウザの localStorage に保存します。
 
+**公開先: https://linga992.github.io/todo/**
+
 ## セットアップ
 
 ```bash
@@ -10,15 +12,15 @@ npm install
 
 ## コマンド
 
-| コマンド            | 内容                                          |
-| ------------------- | --------------------------------------------- |
-| `npm run dev`       | 開発サーバー。保存すると画面に即反映（HMR）   |
-| `npm run build`     | 型チェック（`tsc -b`）してから本番ビルド      |
-| `npm run preview`   | ビルド結果をローカルで確認                    |
-| `npm test`          | テストを監視モードで実行                      |
-| `npm run test:run`  | テストを 1 回だけ実行                         |
-| `npm run lint`      | oxlint で静的チェック                         |
-| `npm run format`    | Prettier で整形                               |
+| コマンド           | 内容                                        |
+| ------------------ | ------------------------------------------- |
+| `npm run dev`      | 開発サーバー。保存すると画面に即反映（HMR） |
+| `npm run build`    | 型チェック（`tsc -b`）してから本番ビルド    |
+| `npm run preview`  | ビルド結果をローカルで確認                  |
+| `npm test`         | テストを監視モードで実行                    |
+| `npm run test:run` | テストを 1 回だけ実行                       |
+| `npm run lint`     | oxlint で静的チェック                       |
+| `npm run format`   | Prettier で整形                             |
 
 ## できること
 
@@ -103,6 +105,15 @@ true になるので、そのときは送信しません。これを見ないと
 - ブラウザや PC が変わると引き継がれません。
 - シークレットウィンドウで開いた場合、閉じると消えます。
 - ブラウザの閲覧データ削除でサイトデータを消すと、一緒に消えます。
+
+## デプロイ
+
+`master` に push すると `.github/workflows/deploy.yml` が動き、lint → test → build を
+通してから GitHub Pages へ公開されます。手動実行は Actions タブの「Run workflow」から。
+
+Pages は `https://linga992.github.io/todo/` というサブパスで配信されるため、
+`vite.config.ts` ではビルド時のみ `base` をリポジトリ名にしています。開発サーバーは
+ルートのままなので、`npm run dev` は `http://localhost:5173/` で開けます。
 
 ## 以前のバニラ版
 

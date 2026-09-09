@@ -2,7 +2,7 @@
 
 React + TypeScript + Vite で作った TODO アプリ。データはブラウザの localStorage に保存します。
 
-**公開先: https://linga992.github.io/todo/**
+**公開先: Vercel（下記「デプロイ」を参照）**
 
 ## セットアップ
 
@@ -108,12 +108,19 @@ true になるので、そのときは送信しません。これを見ないと
 
 ## デプロイ
 
-`master` に push すると `.github/workflows/deploy.yml` が動き、lint → test → build を
-通してから GitHub Pages へ公開されます。手動実行は Actions タブの「Run workflow」から。
+Vercel の GitHub 連携で公開しています。`master` に push すると本番へ、プルリクエストを
+出すとそのブランチ用のプレビュー URL が自動で作られます。
 
-Pages は `https://linga992.github.io/todo/` というサブパスで配信されるため、
-`vite.config.ts` ではビルド時のみ `base` をリポジトリ名にしています。開発サーバーは
-ルートのままなので、`npm run dev` は `http://localhost:5173/` で開けます。
+Vercel が Vite を自動検出するため、専用の設定ファイルは置いていません。
+
+| 項目             | 値              |
+| ---------------- | --------------- |
+| ビルドコマンド   | `npm run build` |
+| 出力ディレクトリ | `dist`          |
+
+ドメイン直下で配信されるので `vite.config.ts` に `base` は不要です。以前 GitHub Pages を
+使っていたときは `/todo/` というサブパス配信だったため `base` を設定していましたが、
+Vercel に一本化した際に削除しました。
 
 ## 以前のバニラ版
 

@@ -1,0 +1,4 @@
+# 改行コードを LF に統一する。
+# Windows の core.autocrlf=true だと作業ツリーが CRLF になり、Prettier（endOfLine: lf）の
+# チェックが手元でだけ失敗する。CI（Linux）と同じ状態を手元でも再現できるようにする。
+* text=auto eol=lf

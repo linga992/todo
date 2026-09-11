@@ -2,7 +2,7 @@
 
 React + TypeScript + Vite で作った TODO アプリ。データはブラウザの localStorage に保存します。
 
-**公開先: Vercel（下記「デプロイ」を参照）**
+**公開先: https://todo-linga992.vercel.app**
 
 ## セットアップ
 
@@ -110,6 +110,18 @@ true になるので、そのときは送信しません。これを見ないと
 
 Vercel の GitHub 連携で公開しています。`master` に push すると本番へ、プルリクエストを
 出すとそのブランチ用のプレビュー URL が自動で作られます。
+
+Vercel の Deployment Protection（Vercel Authentication）は無効にしてあります。有効のままだと、
+独自ドメイン以外（`*.vercel.app`）は本番でも Vercel へのログインを求められます。
+
+### CI
+
+デプロイとは別に、`.github/workflows/ci.yml` が `master` への push とプルリクエストで
+lint → format → test → build を実行します。Vercel はビルドしか行わないため、テストや
+整形の崩れはこちらで検出します。
+
+改行コードは `.gitattributes` で LF に固定しています。Windows の `core.autocrlf=true` の
+ままだと作業ツリーが CRLF になり、Prettier のチェックが手元でだけ失敗するためです。
 
 Vercel が Vite を自動検出するため、専用の設定ファイルは置いていません。
 
